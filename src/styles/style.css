@@ -1,0 +1,13 @@
+/* General -------------------------------------------------------------------------------- */
+* {
+    box-sizing: border-box;
+    font-family: 'Recursive', sans-serif;
+    /* font-family: 'Righteous', cursive; */
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+body {
+    background-color: #FB6B6B;
+}
