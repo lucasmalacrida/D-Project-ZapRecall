@@ -132,8 +132,6 @@ const Buttons = styled.div`
     align-items: center;
 
     button {
-        font-size: 12px;
-        line-height: 14px;
         width: 85px;
         height: 37px;
         border-radius: 5px;
