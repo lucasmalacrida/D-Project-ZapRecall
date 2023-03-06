@@ -1,13 +1,178 @@
 /* General -------------------------------------------------------------------------------- */
 * {
     box-sizing: border-box;
+}
+
+body {
+    background-color: #FB6B6B;
+}
+
+p {
+    color: #333333;
     font-family: 'Recursive', sans-serif;
-    /* font-family: 'Righteous', cursive; */
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
 }
 
-body {
+.hidden {
+    display: none !important;
+}
+
+/* Header -------------------------------------------------------------------------------- */
+.container-header {
     background-color: #FB6B6B;
+    position: fixed;
+    z-index: 1;
+    top: 0px;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    height: 125px;
+    padding-top: 15px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header img {
+    width: 52px;
+}
+
+h1 {
+    font-family: 'Righteous', cursive;
+    font-weight: 400;
+    font-size: 36px;
+    line-height: 45px;
+    letter-spacing: -1.2%;
+    color: #FFFFFF;
+    padding: 0px 20px;
+}
+
+.play-btn, .turn-btn {
+    cursor: pointer;
+}
+
+/* Cards -------------------------------------------------------------------------------- */
+main {
+    margin: 150px auto 110px;
+}
+
+.card {
+    margin: 0px auto 25px;
+    width: 300px;
+    filter: drop-shadow(0px 4px 5px rgba(0, 0, 0, 0.15));
+}
+
+/* Closed -------------------------------------------------- */
+.closed {
+    background-color: #FFFFFF;
+    height: 65px;
+    border-radius: 5px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 15px;
+}
+
+h2 {
+    font-family: 'Recursive', sans-serif;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    color: #333333;
+}
+
+.no-quest {
+    text-decoration: line-through;
+    color: #FF3030;
+}
+
+.partial-quest {
+    text-decoration: line-through;
+    color: #FF922E;
+}
+
+.zap-quest {
+    text-decoration: line-through;
+    color: #2FBE34;
+}
+
+/* Open -------------------------------------------------- */
+.face {
+    background-color: #FFFFD4;
+    padding: 18px 15px 10px;
+    border-radius: 5px;
+}
+
+.face p {
+    padding-bottom: 22px;
+}
+
+.back-face {
+    position: relative;
+}
+
+.turn-btn {
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+}
+
+.buttons {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.buttons button {
+    font-size: 12px;
+    line-height: 14px;
+    width: 85px;
+    height: 37px;
+    border-radius: 5px;
+
+    color: #FFFFFF;
+    text-align: center;
+    font-family: 'Recursive', sans-serif;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 14px;
+}
+
+.no-btn {
+    background-color: #FF3030;
+}
+
+.partial-btn {
+    background-color: #FF922E;
+}
+
+.zap-btn {
+    background-color: #2FBE34;
+}
+
+/* Turn Animation */
+/* To-Do (Inspire on Parot Card Game) */
+
+/* Footer -------------------------------------------------------------------------------- */
+.container-footer {
+    background-color: #FFFFFF;
+    position: fixed;
+    z-index: 1;
+    bottom: 0px;
+    width: 100%;
+}
+
+footer {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    filter: drop-shadow(0px -4px 6px rgba(0, 0, 0, 0.05));
+    clip-path: inset(-30px 0px 0px 0px);
 }
