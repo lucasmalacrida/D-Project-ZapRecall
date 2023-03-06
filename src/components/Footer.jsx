@@ -1,10 +1,10 @@
 import styled from "styled-components"
 
-export default function Footer() {
+export default function Footer({ count, size }) {
     return (
         <ContainerFooter>
             <FooterTag>
-                <p>0/4 CONCLUÍDOS</p>
+                <p>{count}/{size} CONCLUÍDOS</p>
             </FooterTag>
         </ContainerFooter>
     )

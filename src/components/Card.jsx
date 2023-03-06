@@ -8,14 +8,15 @@ import no_icon from "../assets/icone_erro.png";
 import partial_icon from "../assets/icone_quase.png";
 import zap_icon from "../assets/icone_certo.png";
 
-export default function Card({ id, question, answer }) {
+export default function Card({ id, question, answer, count, setCount }) {
     const [openCard, setOpenCard] = useState(false);
     const [turnedCard, setTurnedCard] = useState(false);
     const [answerObj, setAnswerObj] = useState({ alt: 'play-btn', answer: '', icon: play_btn })
 
     function answerCard({ alt, answer, icon }) {
-        setAnswerObj({ alt: alt, answer: answer, icon: icon });
         setTurnedCard(false);
+        setAnswerObj({ alt: alt, answer: answer, icon: icon });
+        setCount(count + 1);
         setOpenCard(false);
     }
 
@@ -23,7 +24,7 @@ export default function Card({ id, question, answer }) {
         <ContainerCard>
             <Closed openCard={openCard} answerObj={answerObj}>
                 <h2>Pergunta {id + 1}</h2>
-                <img alt={answerObj.alt} src={answerObj.icon} onClick={ (answerObj.answer === '') && (() => setOpenCard(true)) } />
+                <img alt={answerObj.alt} src={answerObj.icon} onClick={(answerObj.answer === '') && (() => setOpenCard(true))} />
             </Closed>
 
             <Open>
@@ -91,7 +92,7 @@ const Closed = styled.div`
     }
 
     img {
-        ${(props) => (props.answerObj.answer==='') ? 'cursor: pointer;' : ''}
+        ${(props) => (props.answerObj.answer === '') ? 'cursor: pointer;' : ''}
     }
 `;
 
