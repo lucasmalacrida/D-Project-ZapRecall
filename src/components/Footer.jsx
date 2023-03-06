@@ -4,7 +4,7 @@ export default function Footer({ count, size }) {
     return (
         <ContainerFooter>
             <FooterTag>
-                <p>{count}/{size} CONCLUÍDOS</p>
+                <p data-test="footer">{count}/{size} CONCLUÍDOS</p>
             </FooterTag>
         </ContainerFooter>
     )
