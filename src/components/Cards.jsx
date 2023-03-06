@@ -16,7 +16,12 @@ cards.forEach((c,j) => c.id = j);
 export default function Cards(){
     return (
         <MainTag>
-            {cards.map( c => <Card key={c.id} id={c.id} question={c.question} answer={c.answer} /> )}
+            {cards.map( c => <Card 
+				key={c.id}
+				id={c.id}
+				question={c.question}
+				answer={c.answer}
+				/> )}
         </MainTag>
     )
 }

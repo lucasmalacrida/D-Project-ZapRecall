@@ -1,51 +1,53 @@
+import { useState } from "react";
 import styled from "styled-components";
 
 import play_btn from "../assets/seta_play.png";
 import turn_btn from "../assets/seta_virar.png";
 
-// import no_icon from "../assets/icone_erro.png";
-// import partial_icon from "../assets/icone_quase.png";
-// import zap_icon from "../assets/icone_certo.png";
+import no_icon from "../assets/icone_erro.png";
+import partial_icon from "../assets/icone_quase.png";
+import zap_icon from "../assets/icone_certo.png";
 
 export default function Card({ id, question, answer }) {
+    const [openCard, setOpenCard] = useState(false);
+    const [turnedCard, setTurnedCard] = useState(false);
+    const [answerObj, setAnswerObj] = useState({ alt: 'play-btn', answer: '', icon: play_btn })
+
+    function answerCard({ alt, answer, icon }) {
+        setAnswerObj({ alt: alt, answer: answer, icon: icon });
+        setTurnedCard(false);
+        setOpenCard(false);
+    }
+
     return (
         <ContainerCard>
-            <Closed>
+            <Closed openCard={openCard} answerObj={answerObj}>
                 <h2>Pergunta {id + 1}</h2>
-                <img alt="play-btn" src={play_btn} />
-
-                {/* <h2 className="no-quest">Pergunta {id + 1}</h2> */}
-                {/* <img alt="no-icon" src={no_icon} className="no-icon" /> */}
-
-                {/* <h2 className="partial-quest">Pergunta {id + 1}</h2> */}
-                {/* <img alt="partial-icon" src={partial_icon} className="partial-icon" /> */}
-
-                {/* <h2 className="zap-quest">Pergunta {id + 1}</h2> */}
-                {/* <img alt="zap-icon" src={zap_icon} className="zap-icon" /> */}
+                <img alt={answerObj.alt} src={answerObj.icon} onClick={ (answerObj.answer === '') && (() => setOpenCard(true)) } />
             </Closed>
 
             <Open>
-                <Question>
+                <Question openCard={openCard} turnedCard={turnedCard} >
                     <p>{question}</p>
-                    <img alt="turn-btn" src={turn_btn} />
+                    <img alt="turn-btn" src={turn_btn} onClick={() => setTurnedCard(true)} />
                 </Question>
 
-                <Answer>
+                <Answer turnedCard={turnedCard} >
                     <p>{answer}</p>
                     <Buttons>
-                        <button>
+                        <button onClick={() => answerCard({ alt: 'no-icon', answer: 'no', icon: no_icon })}>
                             Não lembrei
                         </button>
-                        <button>
+                        <button onClick={() => answerCard({ alt: 'partial-icon', answer: 'partial', icon: partial_icon })}>
                             Quase não lembrei
                         </button>
-                        <button>
+                        <button onClick={() => answerCard({ alt: 'zap-icon', answer: 'zap', icon: zap_icon })}>
                             Zap!
                         </button>
                     </Buttons>
                 </Answer>
             </Open>
-        </ContainerCard>
+        </ContainerCard >
     )
 }
 
@@ -57,7 +59,7 @@ const ContainerCard = styled.div`
 `;
 
 const Closed = styled.div`
-    /* display: none !important; */
+    ${(props) => props.openCard ? 'display: none !important;' : ''}
 
     background-color: #FFFFFF;
     height: 65px;
@@ -75,24 +77,21 @@ const Closed = styled.div`
         line-height: 19px;
         color: #333333;
 
-        &.no-quest {
-            text-decoration: line-through;
-            color: #FF3030;
-        }
-
-        &.partial-quest {
-            text-decoration: line-through;
-            color: #FF922E;
-        }
-
-        &.zap-quest {
-            text-decoration: line-through;
-            color: #2FBE34;
-        }
+        ${(props) => props.answerObj.answer === 'no' ?
+        `text-decoration: line-through;
+            color: #FF3030;`
+        : props.answerObj.answer === 'partial' ?
+            `text-decoration: line-through;
+            color: #FF922E;`
+            : props.answerObj.answer === 'zap' ?
+                `text-decoration: line-through;
+            color: #2FBE34;`
+                : ''
+    }
     }
 
     img {
-        cursor: pointer;
+        ${(props) => (props.answerObj.answer==='') ? 'cursor: pointer;' : ''}
     }
 `;
 
@@ -106,7 +105,8 @@ const Open = styled.div`
 `;
 
 const Question = styled.div`
-    display: none !important;
+    ${(props) => props.openCard ? '' : 'display: none !important;'}
+    ${(props) => props.turnedCard ? 'display: none !important;' : ''}
 
     padding: 18px 15px 10px;
     position: relative;
@@ -120,7 +120,7 @@ const Question = styled.div`
 `;
 
 const Answer = styled.div`
-    display: none !important;
+    ${(props) => props.turnedCard ? '' : 'display: none !important;'}
 
     padding: 18px 15px 10px;    
 `;
