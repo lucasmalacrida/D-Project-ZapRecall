@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Card from "./Card";
 
 let cards = [
@@ -14,8 +15,12 @@ cards.forEach((c,j) => c.id = j);
 
 export default function Cards(){
     return (
-        <main>
-            {cards.map( c => <Card id={c.id} question={c.question} answer={c.answer} /> )}
-        </main>
+        <MainTag>
+            {cards.map( c => <Card key={c.id} id={c.id} question={c.question} answer={c.answer} /> )}
+        </MainTag>
     )
 }
+
+const MainTag = styled.main`
+	margin: 150px auto 110px;
+`;

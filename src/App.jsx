@@ -1,6 +1,3 @@
-import "./styles/reset.css";
-import "./styles/style.css";
-
 import logo from "./assets/logo.png";
 
 import Header from "./components/Header";
