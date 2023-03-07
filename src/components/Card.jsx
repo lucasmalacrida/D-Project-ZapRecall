@@ -11,7 +11,7 @@ import zap_icon from "../assets/icone_certo.png";
 export default function Card({ id, question, answer, count, setCount }) {
     const [openCard, setOpenCard] = useState(false);
     const [turnedCard, setTurnedCard] = useState(false);
-    const [answerObj, setAnswerObj] = useState({ alt: 'play-btn', answer: 'play', icon: play_btn })
+    const [answerObj, setAnswerObj] = useState({ alt: 'play-btn', answer: 'play', icon: play_btn });
 
     function answerCard({ alt, answer, icon }) {
         setTurnedCard(false);
@@ -24,7 +24,7 @@ export default function Card({ id, question, answer, count, setCount }) {
         <ContainerCard data-test="flashcard">
             <Closed openCard={openCard} answerObj={answerObj}>
                 <h2 data-test="flashcard-text">Pergunta {id + 1}</h2>
-                <img alt={answerObj.alt} src={answerObj.icon} onClick={(answerObj.answer === 'play') && (() => setOpenCard(true))} data-test={answerObj.alt} />
+                <img alt={answerObj.alt} src={answerObj.icon} onClick={(answerObj.answer === 'play') ? (() => setOpenCard(true)) : undefined} data-test={answerObj.alt} />
             </Closed>
 
             <Open>
