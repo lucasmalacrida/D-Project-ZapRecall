@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Card from "./Card";
 
-export default function Cards({ cards, count, setCount }) {
+export default function Cards({ cards, answersQueue, setAnswersQueue }) {
 	return (
 		<MainTag>
 			{cards.map(c => <Card
@@ -9,8 +9,8 @@ export default function Cards({ cards, count, setCount }) {
 				id={c.id}
 				question={c.question}
 				answer={c.answer}
-				count={count}
-				setCount={setCount}
+				answersQueue={answersQueue}
+				setAnswersQueue={setAnswersQueue}
 			/>)}
 		</MainTag>
 	)

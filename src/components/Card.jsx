@@ -8,15 +8,16 @@ import no_icon from "../assets/icone_erro.png";
 import partial_icon from "../assets/icone_quase.png";
 import zap_icon from "../assets/icone_certo.png";
 
-export default function Card({ id, question, answer, count, setCount }) {
+export default function Card({ id, question, answer, answersQueue, setAnswersQueue }) {
     const [openCard, setOpenCard] = useState(false);
     const [turnedCard, setTurnedCard] = useState(false);
     const [answerObj, setAnswerObj] = useState({ alt: 'play-btn', answer: 'play', icon: play_btn });
 
-    function answerCard({ alt, answer, icon }) {
+    function answerCard(ans) {
         setTurnedCard(false);
-        setAnswerObj({ alt: alt, answer: answer, icon: icon });
-        setCount(count + 1);
+        const newAnswer = ans;
+        setAnswerObj(newAnswer);
+        setAnswersQueue([...answersQueue, newAnswer]);
         setOpenCard(false);
     }
 
@@ -36,13 +37,13 @@ export default function Card({ id, question, answer, count, setCount }) {
                 <Answer turnedCard={turnedCard} >
                     <p data-test="flashcard-text">{answer}</p>
                     <Buttons>
-                        <button onClick={() => answerCard({ alt: 'no-icon', answer: 'no', icon: no_icon })} data-test="no-btn" >
+                        <button onClick={() => answerCard({ id: id, alt: 'no-icon', answer: 'no', icon: no_icon })} data-test="no-btn" >
                             Não lembrei
                         </button>
-                        <button onClick={() => answerCard({ alt: 'partial-icon', answer: 'partial', icon: partial_icon })} data-test="partial-btn" >
+                        <button onClick={() => answerCard({ id: id, alt: 'partial-icon', answer: 'partial', icon: partial_icon })} data-test="partial-btn" >
                             Quase não lembrei
                         </button>
-                        <button onClick={() => answerCard({ alt: 'zap-icon', answer: 'zap', icon: zap_icon })} data-test="zap-btn" >
+                        <button onClick={() => answerCard({ id: id, alt: 'zap-icon', answer: 'zap', icon: zap_icon })} data-test="zap-btn" >
                             Zap!
                         </button>
                     </Buttons>
@@ -78,16 +79,16 @@ const Closed = styled.div`
         line-height: 19px;
         color: #333333;
 
-        ${(props) => props.answerObj.answer === 'no' ?
-        `text-decoration: line-through;
-            color: #FF3030;`
-        : props.answerObj.answer === 'partial' ?
-            `text-decoration: line-through;
-            color: #FF922E;`
-            : props.answerObj.answer === 'zap' ?
-                `text-decoration: line-through;
-            color: #2FBE34;`
-                : ''
+        ${(props) => props.answerObj.answer === 'no' ? `
+            text-decoration: line-through;
+            color: #FF3030;
+        `: props.answerObj.answer === 'partial' ? `
+            text-decoration: line-through;
+            color: #FF922E;
+        `: props.answerObj.answer === 'zap' ? `
+            text-decoration: line-through;
+            color: #2FBE34;
+        `: ''
     }
     }
 

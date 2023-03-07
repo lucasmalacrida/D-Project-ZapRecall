@@ -12,7 +12,7 @@ export default function App() {
   const [startGame, setStartGame] = useState(false);
   cards.forEach((c, j) => c.id = j);
 
-  const [count, setCount] = useState(0);
+  const [answersQueue, setAnswersQueue] = useState([]);
 
   return (
     <>
@@ -25,9 +25,9 @@ export default function App() {
       <MainScreen startGame={startGame}>
         <Header logo={logo} />
 
-        <Cards cards={cards} count={count} setCount={setCount} />
+        <Cards cards={cards} answersQueue={answersQueue} setAnswersQueue={setAnswersQueue} />
 
-        <Footer count={count} size={cards.length} />
+        <Footer answersQueue={answersQueue} size={cards.length} />
       </MainScreen>
     </>
   );
