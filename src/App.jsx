@@ -13,6 +13,8 @@ export default function App() {
   cards.forEach((c, j) => c.id = j);
 
   const [answersQueue, setAnswersQueue] = useState([]);
+  const answersType = answersQueue.map(ans => ans.answer);
+  const status = { start: (answersType.length !== 0), end: (answersType.length === cards.length), win: (!answersType.includes('no')) };
 
   return (
     <>
@@ -25,9 +27,9 @@ export default function App() {
       <MainScreen startGame={startGame}>
         <Header logo={logo} />
 
-        <Cards cards={cards} answersQueue={answersQueue} setAnswersQueue={setAnswersQueue} />
+        <Cards cards={cards} answersQueue={answersQueue} setAnswersQueue={setAnswersQueue} status={status} />
 
-        <Footer answersQueue={answersQueue} size={cards.length} />
+        <Footer answersQueue={answersQueue} size={cards.length} status={status} />
       </MainScreen>
     </>
   );

@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import Card from "./Card";
 
-export default function Cards({ cards, answersQueue, setAnswersQueue }) {
+export default function Cards({ cards, answersQueue, setAnswersQueue, status }) {
 	return (
-		<MainTag>
+		<MainTag status={status} >
 			{cards.map(c => <Card
 				key={c.id}
 				id={c.id}
@@ -18,4 +18,5 @@ export default function Cards({ cards, answersQueue, setAnswersQueue }) {
 
 const MainTag = styled.main`
 	margin: 150px auto 110px;
+	${props => props.status.end && 'margin-bottom: 211px;'}
 `;
